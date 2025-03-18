@@ -77,44 +77,47 @@ const DashboardLayout: React.FC = () => {
         />
       )}
       
-      {/* Node Sidebar */}
-      <div 
-        className={cn(
-          "fixed inset-y-0 left-0 w-64 z-40 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
-          isMobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        )}
-      >
-        <NodeSidebar
-          nodes={nodes}
-          onSelectNode={handleNodeSelect}
-          onSelectContainer={handleContainerSelect}
-          selectedNodeId={selectedNodeId}
-          selectedContainerId={selectedContainerId}
-        />
-      </div>
-      
-      {/* Action Sidebar */}
-      <div 
-        className={cn(
-          "fixed inset-y-0 left-64 w-56 z-40 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
-          isMobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        )}
-      >
-        <ActionSidebar
-          selectedNode={selectedNode}
-          selectedContainer={selectedContainer}
-          selectedAction={selectedActionId}
-          onSelectAction={handleActionSelect}
-        />
-      </div>
-      
-      {/* Main Content */}
-      <div className="flex-1 overflow-hidden">
-        <ContainerView
-          selectedNode={selectedNode}
-          selectedContainer={selectedContainer}
-          selectedAction={selectedActionId}
-        />
+      {/* Sidebar Layout - Using flex for proper layout */}
+      <div className="flex w-full">
+        {/* Node Sidebar */}
+        <div 
+          className={cn(
+            "fixed inset-y-0 left-0 w-64 z-40 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
+            isMobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          )}
+        >
+          <NodeSidebar
+            nodes={nodes}
+            onSelectNode={handleNodeSelect}
+            onSelectContainer={handleContainerSelect}
+            selectedNodeId={selectedNodeId}
+            selectedContainerId={selectedContainerId}
+          />
+        </div>
+        
+        {/* Action Sidebar */}
+        <div 
+          className={cn(
+            "fixed inset-y-0 left-64 w-56 z-40 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0",
+            isMobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          )}
+        >
+          <ActionSidebar
+            selectedNode={selectedNode}
+            selectedContainer={selectedContainer}
+            selectedAction={selectedActionId}
+            onSelectAction={handleActionSelect}
+          />
+        </div>
+        
+        {/* Main Content - Should take up remaining space */}
+        <div className="flex-1 overflow-auto md:pl-0">
+          <ContainerView
+            selectedNode={selectedNode}
+            selectedContainer={selectedContainer}
+            selectedAction={selectedActionId}
+          />
+        </div>
       </div>
     </div>
   );
