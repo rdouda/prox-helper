@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Node, Container, formatBytes, formatUptime, containerActions, nodeActions } from '@/lib/data';
-import { Server, Cpu, Memory, HardDrive, Clock, Network, Shield, Calendar, BarChart2 } from 'lucide-react';
+import { Server, Cpu, HardDrive, Clock, Network, Shield, Calendar, BarChart2, Database } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ContainerViewProps {
@@ -68,7 +67,7 @@ const ContainerView: React.FC<ContainerViewProps> = ({
             <div className="glass p-5 rounded-lg shadow-sm animate-scale-in" style={{ animationDelay: '50ms' }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-blue-500/10 rounded-md">
-                  <Memory size={20} className="text-blue-500" />
+                  <Database size={20} className="text-blue-500" />
                 </div>
                 <div>
                   <h3 className="text-sm font-medium">Memory</h3>
@@ -185,7 +184,7 @@ const ContainerView: React.FC<ContainerViewProps> = ({
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-orange-500/10 rounded-full flex-shrink-0 mt-0.5">
-                    <Memory size={14} className="text-orange-500" />
+                    <Database size={14} className="text-orange-500" />
                   </div>
                   <div>
                     <p className="text-sm font-medium">Memory increased to {formatBytes(selectedContainer.memory * 1024 * 1024)}</p>
@@ -249,7 +248,7 @@ const ContainerView: React.FC<ContainerViewProps> = ({
           <div className="glass p-5 rounded-lg shadow-sm animate-scale-in" style={{ animationDelay: '50ms' }}>
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 bg-blue-500/10 rounded-md">
-                <Memory size={20} className="text-blue-500" />
+                <Database size={20} className="text-blue-500" />
               </div>
               <div>
                 <h3 className="text-sm font-medium">Memory</h3>
