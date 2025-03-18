@@ -1,10 +1,11 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 40% 98%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 221.2 83% 53.3%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -34,20 +35,29 @@
 
     --radius: 0.5rem;
 
+    /* Dashboard specific colors */
+    --dashboard-sidebar-bg: 220 20% 18%;
+    --dashboard-sidebar-item: 220 15% 40%;
+    --dashboard-sidebar-hover: 221.2 83% 53.3%;
+    --dashboard-sidebar-active: 221.2 83% 53.3%;
+    --dashboard-sidebar-border: 220 13% 25%;
+    
+    --dashboard-action-bg: 220 16% 22%;
+    --dashboard-action-item: 220 15% 65%;
+    --dashboard-action-hover: 221.2 83% 53.3%;
+    --dashboard-action-active: 221.2 83% 53.3%;
+    
+    --dashboard-content-bg: 210 30% 98%;
+    --dashboard-overlay: 220 20% 10% / 0.7;
+
+    /* Original Sidebar Properties */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -61,7 +71,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -79,6 +89,23 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+    /* Dashboard specific colors - dark mode */
+    --dashboard-sidebar-bg: 220 20% 18%;
+    --dashboard-sidebar-item: 220 15% 65%;
+    --dashboard-sidebar-hover: 221.2 83% 53.3%;
+    --dashboard-sidebar-active: 221.2 83% 53.3%;
+    --dashboard-sidebar-border: 220 13% 25%;
+    
+    --dashboard-action-bg: 220 16% 22%;
+    --dashboard-action-item: 220 15% 65%;
+    --dashboard-action-hover: 221.2 83% 53.3%;
+    --dashboard-action-active: 221.2 83% 53.3%;
+    
+    --dashboard-content-bg: 215 25% 14%;
+    --dashboard-overlay: 220 20% 10% / 0.8;
+
+    /* Original Sidebar Properties */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -96,6 +123,66 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
   }
+}
+
+/* Dashboard specific styles */
+@layer components {
+  .node-item {
+    @apply relative flex items-center gap-2 px-4 py-3 text-dashboard-sidebar-item transition-all duration-200 
+    hover:text-dashboard-sidebar-hover cursor-pointer hover:bg-dashboard-sidebar-bg/40;
+  }
+  
+  .node-item.active {
+    @apply text-dashboard-sidebar-active bg-dashboard-sidebar-bg/70;
+  }
+  
+  .container-item {
+    @apply relative flex items-center gap-2 px-4 py-2.5 text-dashboard-sidebar-item transition-all duration-200 
+    hover:text-dashboard-sidebar-hover cursor-pointer hover:bg-dashboard-sidebar-bg/40 pl-8;
+  }
+  
+  .container-item.active {
+    @apply text-dashboard-sidebar-active bg-dashboard-sidebar-bg/70;
+  }
+  
+  .action-button {
+    @apply relative flex items-center gap-2 px-3 py-2 rounded-md text-dashboard-action-item transition-all duration-200 
+    hover:text-dashboard-action-hover cursor-pointer;
+  }
+  
+  .action-button.active {
+    @apply text-dashboard-action-active bg-dashboard-action-bg/70;
+  }
+  
+  .status-badge {
+    @apply inline-flex items-center justify-center h-6 px-2 text-xs font-medium rounded-full;
+  }
+  
+  .status-running {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+  }
+  
+  .status-stopped {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300;
+  }
+  
+  .status-paused {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300;
+  }
+  
+  /* Loading skeleton animation */
+  .loading-pulse {
+    @apply animate-pulse-subtle;
+  }
+}
+
+/* For glassmorphism effects */
+.glass {
+  @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-white/20 dark:border-gray-700/20 shadow-lg;
+}
+
+.glass-dark {
+  @apply bg-gray-900/80 backdrop-blur-lg border border-gray-800/30 shadow-lg;
 }
